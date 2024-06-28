@@ -1,0 +1,53 @@
+{
+    "name": "gremo/symfony-webapp",
+    "type": "symfony-pack",
+    "license": "MIT",
+    "description": "Opinionated Composer metapackage for Symfony-based web applications",
+    "require": {
+        "babdev/pagerfanta-bundle": "^4.4",
+        "pagerfanta/doctrine-orm-adapter": "^4.6",
+        "pagerfanta/twig": "^4.6",
+        "stof/doctrine-extensions-bundle": "^1.12",
+        "symfony/apache-pack": "*",
+        "symfony/asset": "*",
+        "symfony/debug-pack": "*",
+        "symfony/expression-language": "*",
+        "symfony/form": "*",
+        "symfony/http-client": "*",
+        "symfony/intl": "*",
+        "symfony/mailer": "*",
+        "symfony/maker-bundle": "^1.0",
+        "symfony/mime": "*",
+        "symfony/monolog-bundle": "^3.1",
+        "symfony/notifier": "*",
+        "symfony/orm-pack": "*",
+        "symfony/process": "*",
+        "symfony/profiler-pack": "*",
+        "symfony/security-bundle": "*",
+        "symfony/serializer-pack": "*",
+        "symfony/stimulus-bundle": "*",
+        "symfony/string": "*",
+        "symfony/test-pack": "*",
+        "symfony/translation": "*",
+        "symfony/twig-pack": "*",
+        "symfony/ux-live-component": "^2.18",
+        "symfony/ux-turbo": "*",
+        "symfony/ux-twig-component": "^2.18",
+        "symfony/validator": "*",
+        "symfony/web-link": "*",
+        "symfony/webpack-encore-bundle": "^2.1",
+        "twig/cssinliner-extra": "^3.1",
+        "twig/html-extra": "^3.10",
+        "twig/inky-extra": "^3.10",
+        "twig/intl-extra": "^3.10"
+    },
+    "require-dev": {
+        "symfony/debug-pack": "*",
+        "symfony/profiler-pack": "*",
+        "symfony/maker-bundle": "^1.0",
+        "symfony/test-pack": "*"
+    },
+    "conflict": {
+        "symfony/framework-bundle": "<6.3"
+    }
+}
