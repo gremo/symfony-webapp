@@ -1,0 +1,50 @@
+name: Update docs
+
+on:
+  push:
+    paths:
+      - composer.json
+
+jobs:
+  update:
+    if: startsWith(github.ref, 'refs/heads/')
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v3
+
+      - name: Create metadata
+        run: |
+          mkdir -p .github/metadata
+
+          curl -o webapp.json https://raw.githubusercontent.com/symfony/webapp-pack/main/composer.json
+          git diff --no-index webapp.json composer.json | tail -n +5 > .github/metadata/composer.diff || true
+
+          jq -r '
+            .require |
+            to_entries |
+            map(select(.key | contains("/")) |
+              {
+                Package: ("<b>" + .key + "</b>"),
+                Version: .value,
+                Packagist: ("https://packagist.org/packages/" + .key)
+              }
+            )
+          ' composer.json > .github/metadata/require.json
+
+          jq -r '
+            ."require-dev" |
+            to_entries |
+            map(select(.key | contains("/")) |
+              {
+                Package: ("<b>" + .key + "</b>"),
+                Version: .value,
+                Packagist: ("https://packagist.org/packages/" + .key)
+              }
+            )
+          ' composer.json > .github/metadata/require-dev.json
+
+      - name: Markdown autodocs
+        uses: dineshsonachalam/markdown-autodocs@v1.0.4
+        with:
+          commit_message: "Update documentation"
